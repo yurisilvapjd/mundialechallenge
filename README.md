@@ -3,7 +3,7 @@ ACERVO DE MÚSICAS
 
 ### Dependências
  - [Java 8 Development Kit](    https://www.oracle.com/java/technologies/javase-jdk8-downloads.html)
- - [MySQL (Already configured)](https://www.mysql.com/)
+ - [MySQL (Já configurado)](https://www.mysql.com/)
 
 ### Construído com
  - [Java](https://www.oracle.com/java/technologies/javase-jdk8-downloads.html)
