@@ -1,0 +1,5 @@
+package com.yurisilva.mundialechallenge.enumerations;
+
+public enum Role {
+    ROLE_USER, ROLE_ADMIN;
+}
