@@ -40,11 +40,6 @@ public class DomainUserDetailsService implements UserDetailsService {
 
     private static Collection<? extends GrantedAuthority> getAuthorities(User user) {
         String[] userRoles = user.getAuthorities().stream().map(Authority::getName).toArray(String[]::new);
-        System.out.println("User Roles: ");
-        for(String s : userRoles){
-            System.out.println(s + " |");
-        }
-
         return AuthorityUtils.createAuthorityList(userRoles);
     }
 }

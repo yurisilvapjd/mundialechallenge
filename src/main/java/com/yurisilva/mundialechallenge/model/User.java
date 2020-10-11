@@ -35,10 +35,10 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "authority_id"))
     private Set<Authority> authorities;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Playlist> playlists;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Song> songs;
 
     @Override

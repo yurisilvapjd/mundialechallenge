@@ -47,10 +47,8 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 
                 String username = parsedToken.getBody().get("username", String.class);
                 ArrayList authorities = parsedToken.getBody().get("authorities", ArrayList.class);
-                System.out.println("Authorities: ");
                 ArrayList<SimpleGrantedAuthority> auth = new ArrayList<>();
                 for (Object obj : authorities) {
-                    System.out.println(obj.toString() + " |");
                     auth.add(new SimpleGrantedAuthority(obj.toString()));
                 }
 
