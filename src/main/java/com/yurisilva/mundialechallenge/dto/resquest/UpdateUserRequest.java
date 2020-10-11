@@ -3,8 +3,12 @@ package com.yurisilva.mundialechallenge.dto.resquest;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotNull;
+
 @Getter
 @Setter
 public class UpdateUserRequest extends CreateUserRequest {
+
+    @NotNull
     Long id;
 }

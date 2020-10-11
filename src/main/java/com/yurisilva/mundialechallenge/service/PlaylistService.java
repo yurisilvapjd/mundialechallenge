@@ -45,13 +45,13 @@ public class PlaylistService {
     }
 
     public List<Playlist> findAllbyUser() {
-        LOGGER.info("Finding all Song");
+        LOGGER.info("Finding all Playlists");
         return playlistRepository.findAllByUser(getLoggedUser())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Playlist not found."));
     }
 
     public Playlist create(CreatePlaylistRequest request) {
-        LOGGER.info("Object " + request.getName() + " was created");
+        LOGGER.info("Playlist " + request.getName() + " has been created.");
         return playlistRepository.save(
                         Playlist.Builder.aPlaylist()
                         .withName(request.getName())
@@ -63,7 +63,7 @@ public class PlaylistService {
 
     public Playlist update(UpdatePlaylistRequest request) {
         Playlist playlist = this.fetchIfExists(request.getId());
-        LOGGER.info("Object " + request.getName() + " was updated");
+        LOGGER.info("Playlist " + request.getName() + " has been updated.");
         return playlistRepository.save(
                         Playlist.Builder.aPlaylist()
                                 .withId(playlist.getId())
@@ -77,7 +77,7 @@ public class PlaylistService {
     public void delete(Long id) {
         Playlist playlist = this.fetchIfExists(id);
         playlistRepository.delete(playlist);
-        LOGGER.info("User " + id + " was deleted");
+        LOGGER.info("Playlist " + id + " has been deleted.");
     }
 
     public Playlist addSongToPlaylist(Long playlistId, Long songId) {

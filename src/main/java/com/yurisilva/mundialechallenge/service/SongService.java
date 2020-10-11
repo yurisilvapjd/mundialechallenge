@@ -44,13 +44,13 @@ public class SongService {
     }
 
     public List<Song> findAllbyUser() {
-        LOGGER.info("Finding all Song");
+        LOGGER.info("Finding all Songs");
         return songRepository.findAllByUser(getLoggedUser())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Song not found."));
     }
 
     public Song create(CreateSongRequest request) {
-        LOGGER.info("Object " + request.getName() + " was created");
+        LOGGER.info("Song " + request.getName() + " has been created.");
         return songRepository.save(
                         Song.Builder.aSong()
                                 .withName(request.getName())
@@ -62,7 +62,7 @@ public class SongService {
 
     public Song update(UpdateSongRequest request) {
         Song song = this.fecthIfExists(request.getId());
-        LOGGER.info("Object " + request.getName() + " was updated");
+        LOGGER.info("Song " + request.getName() + " has been updated.");
         return songRepository.save(
                         Song.Builder.aSong()
                                 .withId(song.getId())
@@ -85,7 +85,7 @@ public class SongService {
            }
             songRepository.delete(song);
         }
-        LOGGER.info("User " + id + " was deleted");
+        LOGGER.info("Song " + id + " has been deleted.");
     }
 
     private Song fecthIfExists(Long id) {

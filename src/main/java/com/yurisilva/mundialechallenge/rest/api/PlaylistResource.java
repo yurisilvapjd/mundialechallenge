@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -51,14 +52,14 @@ public class PlaylistResource {
     @ApiOperation("Creates a Playlist")
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public PlaylistResponse create(@RequestBody CreatePlaylistRequest request) {
+    public PlaylistResponse create(@Valid @RequestBody CreatePlaylistRequest request) {
         return playlistMapper.toResponse(playlistService.create(request));
     }
 
     @ApiOperation("Updates a Playlist")
     @PutMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public PlaylistResponse update(@RequestBody UpdatePlaylistRequest request) {
+    public PlaylistResponse update(@Valid @RequestBody UpdatePlaylistRequest request) {
         return playlistMapper.toResponse(playlistService.update(request));
     }
 

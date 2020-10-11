@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -51,14 +52,14 @@ public class UserResource {
     @ApiOperation("Creates a User")
     @PostMapping("/admin/users")
     @ResponseStatus(HttpStatus.CREATED)
-    public UserResponse create(@RequestBody CreateUserRequest request) {
+    public UserResponse create(@Valid @RequestBody CreateUserRequest request) {
         return mapper.toResponse(service.create(request));
     }
 
     @ApiOperation("Updates a User")
     @PutMapping("/protected/users")
     @ResponseStatus(HttpStatus.OK)
-    public UserResponse update(@RequestBody UpdateUserRequest request) {
+    public UserResponse update(@Valid @RequestBody UpdateUserRequest request) {
         return mapper.toResponse(service.update(request));
     }
 

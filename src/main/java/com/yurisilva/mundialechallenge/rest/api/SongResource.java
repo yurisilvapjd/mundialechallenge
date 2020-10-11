@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -50,14 +51,14 @@ public class SongResource {
     @ApiOperation("Creates a Song")
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public SongResponse create(@RequestBody CreateSongRequest request) {
+    public SongResponse create(@Valid @RequestBody CreateSongRequest request) {
         return songMapper.toResponse(songService.create(request));
     }
 
     @ApiOperation("Updates a Song")
     @PutMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public SongResponse update(@RequestBody UpdateSongRequest request) {
+    public SongResponse update(@Valid @RequestBody UpdateSongRequest request) {
         return songMapper.toResponse(songService.update(request));
     }
 

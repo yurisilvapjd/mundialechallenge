@@ -10,8 +10,10 @@ import com.yurisilva.mundialechallenge.model.User;
 import com.yurisilva.mundialechallenge.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -43,11 +45,11 @@ public class AuthenticationService {
 
     public AuthResponse authenticate(CredentialRequest credential, HttpServletRequest request) {
         User user = userRepository.findOneByUsernameIgnoreCase(credential.getUsername())
-                .orElseThrow(() -> new UsernameNotFoundException("User not found."));
+                .orElseThrow(() -> new AuthenticationCredentialsNotFoundException("Unable to authenticate. Invalid User."));
 
         BCryptPasswordEncoder bCrypt = new BCryptPasswordEncoder();
         if (!bCrypt.matches(credential.getPassword(), user.getPassword())) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found.");
+            throw new AuthenticationCredentialsNotFoundException("Unable to authenticate. Invalid Password.");
         }
 
         UsernamePasswordAuthenticationToken authentication = setUserInContext(credential.getUsername(), request);

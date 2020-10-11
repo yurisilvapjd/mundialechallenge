@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -22,9 +23,7 @@ public class AuthenticationResource {
     }
 
     @PostMapping("authenticate")
-    public AuthResponse authenticate(
-            @RequestBody CredentialRequest credentialRequest,
-            HttpServletRequest request) {
+    public AuthResponse authenticate(@Valid @RequestBody CredentialRequest credentialRequest, HttpServletRequest request) {
         return service.authenticate(credentialRequest, request);
     }
 }

@@ -31,26 +31,26 @@ public class UserService {
     }
 
     public User findByUsername(String username) {
-        LOGGER.info("Finding user " + username);
+        LOGGER.info("Finding User " + username);
         return userRepository.findOneByUsernameIgnoreCase(username)
                         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found."));
     }
 
     public User findById(Long id) {
-        LOGGER.info("Finding user " + id);
+        LOGGER.info("Finding User " + id);
         return userRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found."));
     }
 
     public List<User> findAll() {
-        LOGGER.info("Finding all users");
+        LOGGER.info("Finding all Users");
         return userRepository.findAll();
     }
 
     public User create(CreateUserRequest request) {
-        if(alreadyExists(request.getUsername())) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username already used!");
+        if(alreadyExists(request.getUsername())) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username already used.");
 
-        LOGGER.info("Object " + request.getName() + " was created");
+        LOGGER.info("User " + request.getName() + " has been created.");
 
         Authority authority = authorityRepository.findOneByName(Role.ROLE_USER.toString());
 
@@ -68,7 +68,7 @@ public class UserService {
 
     public User update(UpdateUserRequest request) {
         if(isItYourself(request.getId())){
-            LOGGER.info("Object " + request.getName() + " was updated");
+            LOGGER.info("User " + request.getName() + " has been updated.");
             return userRepository.save(
                     User.Builder.anUser()
                             .withId(request.getId())
@@ -78,7 +78,7 @@ public class UserService {
                             .build()
             );
         } else {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This is not your User Id!");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This is not your User Id.");
         }
     }
 
@@ -86,9 +86,9 @@ public class UserService {
         if(isItYourself(id)){
             userRepository.delete(this.findById(id));
         } else {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This is not your User Id!");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This is not your User Id.");
         }
-        LOGGER.info("User " + id + " was deleted");
+        LOGGER.info("User " + id + " has been deleted.");
     }
 
     private boolean alreadyExists(String username){
