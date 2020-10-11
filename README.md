@@ -3,7 +3,7 @@ ACERVO DE MÚSICAS
 
 ### Dependências
  - [Java 8 Development Kit](    https://www.oracle.com/java/technologies/javase-jdk8-downloads.html)
- - [MySQL (Already configured)](https://www.mysql.com/)
+ - [MySQL (Já configurado)](https://www.mysql.com/)
 
 ### Construído com
  - [Java](https://www.oracle.com/java/technologies/javase-jdk8-downloads.html)
@@ -28,9 +28,9 @@ Criei uma credencial com perfil `ADMIN` para facilitar os testes.
  - **username**: _admin_ 
  - **password**: _1_
 
-Observação: Não especificações sobre regras para controle de acesso então de forma autônoma adotei as seguintes:
+Observações: Não houve especificações sobre as regras para controle de acesso, então de forma autônoma adotei as seguintes:
 
-Apenas um usuário com perfil `ADMIN` podem:
+Apenas usuários com perfil `ADMIN` podem:
  - Criar um novo usuário
  - obter todos os usuários
  - obter usuários através do `id`
