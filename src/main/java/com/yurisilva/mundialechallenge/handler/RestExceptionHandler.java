@@ -36,7 +36,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
                 .withDeveloperMessage(responseStatusException.getClass().getName())
                 .build();
 
-        return new ResponseEntity<>(businessErrorDetails, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(businessErrorDetails, responseStatusException.getStatus());
     }
 
     @ExceptionHandler(AuthenticationCredentialsNotFoundException.class)
